@@ -1,0 +1,3 @@
+﻿<?xml version="1.0" encoding="utf-8"?><messages><msg code="0" type="2">Start Time: Wednesday, October 11, 2023 2:15:51 PM</msg><msg code="1" type="100">Error on 'line 323'
+in file 'C:\Users\cwalinskid\Desktop\reps\Project2_Geog777\MyProject1\DownloadService-master\download_service.py'
+with error 'requests.exceptions.MissingSchema: Invalid URL '': No scheme supplied. Perhaps you meant http://?'</msg><msg code="0" type="0">Failed script Download Service...</msg><msg code="-2147467259" type="100">Failed to execute (DownloadService).</msg><msg code="0" type="3">Failed at Wednesday, October 11, 2023 2:15:51 PM (Elapsed Time: 0.31 seconds)</msg></messages>
