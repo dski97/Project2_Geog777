@@ -4,8 +4,10 @@ require([
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
     "esri/layers/GroupLayer",
-    "esri/widgets/LayerList"
-], function (esriConfig, Map, MapView, FeatureLayer, GroupLayer, LayerList) {
+    "esri/widgets/LayerList",
+    "esri/widgets/Expand",
+    "esri/widgets/Legend"
+], function (esriConfig, Map, MapView, FeatureLayer, GroupLayer, LayerList, Expand, Legend) {
     esriConfig.apiKey = "AAPK0401ef0eec41482c8aa0f4e7b5b118c24q7q7NIv8wbHpLPAB-Gvij3hfV_lpqWtqNzqcjDlMqJCmQc5meuAETYsSI2KOgu_";  // Replace with your API key
 
     var map = new Map({
@@ -18,6 +20,19 @@ require([
         zoom: 10,  // Adjusted zoom level to be one level closer
         center: [-118.5750, 36.75]  // longitude, latitude to Kings Canyon and Sequoia National Park
     });
+
+    var legend = new Legend({
+        view: view,
+        style: "classic" // Set the legend to use the classic style
+    });
+
+    var legendExpand = new Expand({
+        view: view,
+        content: legend,
+        expanded: true
+    });
+
+    view.ui.add(legendExpand, "bottom-left");  // Add the expand instance to the ui
 
     var parkBoundaryLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Park_Boundary_Cali/FeatureServer",
