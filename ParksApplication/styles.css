@@ -1,8 +1,29 @@
-body {
+body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;  /* Adding a classic font */
 }
+
+#title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 102, 34, 0.9);  /* Deep green to mimic the forest */
+    color: #FFF;  /* White text for contrast */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 28px;  /* Slightly increased font size */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);  /* Adding a subtle shadow for depth */
+    z-index: 99;
+}
+ 
 #viewDiv {
-    height: 100vh;
-    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

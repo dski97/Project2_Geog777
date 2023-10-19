@@ -7,9 +7,10 @@ require([
     "esri/widgets/LayerList",
     "esri/widgets/Expand",
     "esri/widgets/Legend",
-    "esri/PopupTemplate"
+    "esri/PopupTemplate",
+    "esri/widgets/BasemapGallery"
 ], function (esriConfig, Map, MapView, 
-    FeatureLayer, GroupLayer, LayerList, Expand, Legend, PopupTemplate) {
+    FeatureLayer, GroupLayer, LayerList, Expand, Legend, PopupTemplate, BasemapGallery) {
     esriConfig.apiKey = "AAPK0401ef0eec41482c8aa0f4e7b5b118c24q7q7NIv8wbHpLPAB-Gvij3hfV_lpqWtqNzqcjDlMqJCmQc5meuAETYsSI2KOgu_";  // Replace with your API key
 
     var map = new Map({
@@ -35,6 +36,23 @@ require([
     });
 
     view.ui.add(legendExpand, "bottom-left");  // Add the expand instance to the ui
+
+    var basemapGallery = new BasemapGallery({
+        view: view,  // The view that provides access to the map's basemap(s)
+        source: {
+            portal: {
+                url: "https://www.arcgis.com",
+                useVectorBasemaps: true  // Load vector tile basemap group
+            }
+        }
+    });
+    
+    var bgExpand = new Expand({
+        view: view,
+        content: basemapGallery
+    });
+    
+    view.ui.add(bgExpand, "top-left");  // Adds the BasemapGallery widget to the top-left corner of the view
 
     var parkBoundaryPopupTemplate = new PopupTemplate({
         title: "<span style='color: red;'>{FullName}</span>",
@@ -81,19 +99,48 @@ require([
     });
 
     // Create individual FeatureLayers
+    var rangerStationsPopupTemplate = new PopupTemplate({
+        title: "{Name}",  // Display the Name field value as the popup title
+        content: [
+            {
+                type: "text",
+                text: "Location: {Location}<br>"
+                      + "Use/Purpose: {Use_Purpose}<br>"
+            }
+        ]
+    });
+
     var rangerStationsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Ranger_Stations/FeatureServer",
-        title: "Ranger Stations"
+        title: "Ranger Stations",
+        popupTemplate: rangerStationsPopupTemplate  // Assign the popup template to this layer
+    });
+
+    var informationCentersPopupTemplate = new PopupTemplate({
+        title: "{NAME}"  // Display the Name field value as the popup title
     });
 
     var informationCentersLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Information_Centers/FeatureServer",
-        title: "Information Centers"
+        title: "Information Centers",
+        popupTemplate: informationCentersPopupTemplate  // Assign the popup template to this layer
+    });
+
+
+    var campgroundsPopupTemplate = new PopupTemplate({
+        title: "{Campground}",  // Display the Campground field value as the popup title
+        content: [
+            {
+                type: "text",
+                text: "Number of Sites: {Sites}<br>"
+            }
+        ]
     });
 
     var campgroundsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Campgrounds/FeatureServer",
-        title: "Campgrounds"
+        title: "Campgrounds",
+        popupTemplate: campgroundsPopupTemplate  // Assign the popup template to this layer
     });
 
     // Create a GroupLayer to hold the new FeatureLayers
@@ -105,19 +152,41 @@ require([
     });
 
     // Create individual FeatureLayers
+    var roadsPopupTemplate = new PopupTemplate({
+        title: "{RoadName}",  // Display the Road Name field value as the popup title
+        content: [
+            {
+                type: "text",
+                text: "Surface: {RoadSurface}<br>"
+                      + "Road Class: {RoadClass}<br>"
+            }
+        ]
+    });
+
     var roadsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Roads_in_the_Park/FeatureServer",
-        title: "Roads"
+        title: "Roads",
+        popupTemplate: roadsPopupTemplate  // Assign the popup template to this layer
+    });
+
+    var bridgesPopupTemplate = new PopupTemplate({
+        title: "{LOCATION}"  // Display the Location field value as the popup title
     });
 
     var bridgesLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Bridges/FeatureServer",
-        title: "Bridges"
+        title: "Bridges",
+        popupTemplate: bridgesPopupTemplate  // Assign the popup template to this layer
+    });
+
+    var overlooksPopupTemplate = new PopupTemplate({
+        title: "{Name}"  // Display the Name field value as the popup title
     });
 
     var overlooksLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Overlooks/FeatureServer",
-        title: "Overlooks"
+        title: "Overlooks",
+        popupTemplate: overlooksPopupTemplate  // Assign the popup template to this layer
     });
         
         
@@ -278,5 +347,5 @@ require([
         view: view
     });
 
-    view.ui.add(layerList, "top-right");  // Add the LayerList widget to the top-right corner of the view
+    view.ui.add(layerList, "bottom-right");  // Add the LayerList widget to the top-right corner of the view
 });
