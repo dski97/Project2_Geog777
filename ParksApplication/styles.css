@@ -27,3 +27,35 @@ body, html {
     right: 0;
     bottom: 0;
 }
+
+/* Modern Button Style */
+button.toggleLayers {
+    background-color: #4CAF50; /* Primary color */
+    border: none;
+    color: white; /* Text color */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    transition-duration: 0.4s; /* Smooth transition for hover effect */
+}
+
+button.toggleLayers:hover {
+    background-color: white;
+    color: #4CAF50;
+}
+
+button.toggleLayers {
+    /* ... other styles ... */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+button.toggleLayers:active {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    transform: translateY(4px); /* Slight shift down when button pressed */
+}
+

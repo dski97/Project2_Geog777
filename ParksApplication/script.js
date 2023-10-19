@@ -343,9 +343,29 @@ require([
 
 
 
-    var layerList = new LayerList({
-        view: view
-    });
+// Continue from your code
+var layerList = new LayerList({
+    view: view,
+    container: document.createElement("div") // Create a new div for the LayerList so we can toggle its visibility
+});
 
-    view.ui.add(layerList, "bottom-right");  // Add the LayerList widget to the top-right corner of the view
+// Create a custom button to toggle LayerList
+var layerListButton = document.createElement("button");
+layerListButton.className = "toggleLayers";
+layerListButton.innerHTML = "Toggle Layers";
+layerListButton.onclick = function() {
+    // Toggle the visibility of the LayerList's container
+    if (layerList.container.style.display === "none") {
+        layerList.container.style.display = "block";
+    } else {
+        layerList.container.style.display = "none";
+    }
+};
+
+// Initially, let's hide the LayerList
+layerList.container.style.display = "none";
+
+// Add the LayerList and the toggle button to the bottom-right corner
+view.ui.add(layerListButton, "bottom-right");
+view.ui.add(layerList.container, "bottom-right");
 });
