@@ -130,30 +130,75 @@ require([
     });
 
     // Create individual FeatureLayers for each trail
+    var trailsPopupTemplate = new PopupTemplate({
+        title: "{MAPLABEL}",  // Display the Trail Name field value as the popup title
+        content: [
+            {
+                type: "text",
+                text: "From Junction: {From_Junc}<br>"
+                      + "To Junction: {To_Junc}<br>"
+                      + "Trail Class: {TRLCLASS}<br>"
+                      + "Length: {LengthMiles} miles<br>"
+            }
+        ]
+    });
+
     var trailsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Trails_for_Parks/FeatureServer",
-        title: "Trails"
+        title: "Trails",
+        popupTemplate: trailsPopupTemplate  // Assign the popup template to this layer
+    });
+
+    var trailPopupTemplate = new PopupTemplate({
+        title: "{TrailName}",  
+        content: [
+            {
+                type: "text",
+                text: "Alternative Names: {AltNames}<br>"
+                      + "From Junction: {From_Junc}<br>"
+                      + "To Junction: {To_Junc}<br>"
+                      + "Length: {Length_Miles} miles<br>"
+            }
+        ]
+    });
+
+    var trailPopupTemplate = new PopupTemplate({
+        title: "{TrailName}",  
+        content: [
+            {
+                type: "text",
+                text: "Alternative Names: {AltNames}<br>"
+                      + "From Junction: {From_Junc}<br>"
+                      + "To Junction: {To_Junc}<br>"
+                      + "Length: {Length_Miles} miles<br>"
+            }
+        ]
     });
 
     var pacificCrestTrailLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/PacificCrestTrail/FeatureServer",
-        title: "Pacific Crest Trail"
+        title: "Pacific Crest Trail",
+        popupTemplate: trailPopupTemplate  // Assign the popup template to this layer
     });
 
     var johnMuirTrailLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/John_Muir_Trail/FeatureServer",
-        title: "John Muir Trail"
+        title: "John Muir Trail",
+        popupTemplate: trailPopupTemplate  // Assign the popup template to this layer
     });
 
     var highSierraTrailLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/High_Sierra_Trail/FeatureServer",
-        title: "High Sierra Trail"
+        title: "High Sierra Trail",
+        popupTemplate: trailPopupTemplate  // Assign the popup template to this layer
     });
 
     var raeLakesLoopLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Rae_Lakes_Loop/FeatureServer",
-        title: "Rae Lakes Loop"
+        title: "Rae Lakes Loop",
+        popupTemplate: trailPopupTemplate // Assign the popup template to this layer
     });
+
 
     var trailheadsPopupTemplate = new PopupTemplate({
         title: "Trailhead: {name}",
