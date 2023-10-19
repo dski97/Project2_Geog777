@@ -6,8 +6,10 @@ require([
     "esri/layers/GroupLayer",
     "esri/widgets/LayerList",
     "esri/widgets/Expand",
-    "esri/widgets/Legend"
-], function (esriConfig, Map, MapView, FeatureLayer, GroupLayer, LayerList, Expand, Legend) {
+    "esri/widgets/Legend",
+    "esri/PopupTemplate"
+], function (esriConfig, Map, MapView, 
+    FeatureLayer, GroupLayer, LayerList, Expand, Legend, PopupTemplate) {
     esriConfig.apiKey = "AAPK0401ef0eec41482c8aa0f4e7b5b118c24q7q7NIv8wbHpLPAB-Gvij3hfV_lpqWtqNzqcjDlMqJCmQc5meuAETYsSI2KOgu_";  // Replace with your API key
 
     var map = new Map({
@@ -34,9 +36,35 @@ require([
 
     view.ui.add(legendExpand, "bottom-left");  // Add the expand instance to the ui
 
+    var parkBoundaryPopupTemplate = new PopupTemplate({
+        title: "<span style='color: red;'>{FullName}</span>",
+        content: [
+            {
+                type: "text",
+                text: "This is the boundary of <span style='color: red;'>{FullName}</span>. There is a total of "
+            },
+            {
+                type: "fields",
+                fieldInfos: [{
+                    fieldName: "DeedAcres",
+                    label: "Total Acres",
+                    format: {
+                        places: 0,
+                        digitSeparator: true
+                    }
+                }]
+            },
+            {
+                type: "text",
+                text: " acres in the park."
+            }
+        ]
+    });
+
     var parkBoundaryLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Park_Boundary_Cali/FeatureServer",
-        title: "Park Boundaries"  // Updated title to 'Park Boundaries'
+        title: "Park Boundaries",  // Updated title to 'Park Boundaries'
+        popupTemplate: parkBoundaryPopupTemplate
     });
 
     var wildernessTravelZonesLayer = new FeatureLayer({
@@ -76,33 +104,32 @@ require([
         visibilityMode: "independent"
     });
 
+    // Create individual FeatureLayers
+    var roadsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Roads_in_the_Park/FeatureServer",
+        title: "Roads"
+    });
 
-        // Create individual FeatureLayers
-        var roadsLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Roads_in_the_Park/FeatureServer",
-            title: "Roads"
-        });
+    var bridgesLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Bridges/FeatureServer",
+        title: "Bridges"
+    });
 
-        var bridgesLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Bridges/FeatureServer",
-            title: "Bridges"
-        });
-
-        var overlooksLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Overlooks/FeatureServer",
-            title: "Overlooks"
-        });
+    var overlooksLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Overlooks/FeatureServer",
+        title: "Overlooks"
+    });
         
         
-        // Create a GroupLayer to hold the new FeatureLayers
-        var infrastructureGroupLayer = new GroupLayer({
-            title: "Infrastructure",
-            layers: [overlooksLayer, bridgesLayer, roadsLayer],
-            visible: false,
-            visibilityMode: "independent"
-        });
+    // Create a GroupLayer to hold the new FeatureLayers
+    var infrastructureGroupLayer = new GroupLayer({
+        title: "Infrastructure",
+        layers: [overlooksLayer, bridgesLayer, roadsLayer],
+        visible: false,
+        visibilityMode: "independent"
+    });
 
-           // Create individual FeatureLayers for each trail
+    // Create individual FeatureLayers for each trail
     var trailsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Trails_for_Parks/FeatureServer",
         title: "Trails"
@@ -128,42 +155,70 @@ require([
         title: "Rae Lakes Loop"
     });
 
+    var trailheadsPopupTemplate = new PopupTemplate({
+        title: "Trailhead: {name}",
+    });
+
+    var trailheadsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Trailheads_Parks/FeatureServer",
+        title: "Trailheads",
+        popupTemplate: trailheadsPopupTemplate
+    });
+
     // Create a GroupLayer to hold the trail FeatureLayers
     var trailsGroupLayer = new GroupLayer({
         title: "Trails",
-        layers: [trailsLayer, pacificCrestTrailLayer, johnMuirTrailLayer, highSierraTrailLayer, raeLakesLoopLayer],
+        layers: [trailsLayer, pacificCrestTrailLayer, johnMuirTrailLayer, highSierraTrailLayer, raeLakesLoopLayer, trailheadsLayer],
         visible: false,
         visibilityMode: "independent"
     });
 
-        // Create individual FeatureLayers for each natural feature
-        var ecologicalZonesLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Ecological_Zones/FeatureServer",
-            title: "Ecological Zones"
-        });
+    // Create individual FeatureLayers for each natural feature
+    var ecoZonesPopupTemplate = new PopupTemplate({
+        title: "{Ecozone}",  // Display the Ecozone field value as the popup title
+        content: "The {Ecozone} covers an area of {Acres} acres."  // Content displaying the Ecozone name and acreage
+    });
+
+    var ecologicalZonesLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Ecological_Zones/FeatureServer",
+        title: "Ecological Zones",
+        popupTemplate: ecoZonesPopupTemplate  // Assign the popup template to this layer
+    });
     
-        var majorRiversLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Major_Rivers/FeatureServer",
-            title: "Major Rivers"
-        });
+    var riversPopupTemplate = new PopupTemplate({
+        title: "{NAME}",  // Display the river name as the popup title
+    });
+
+    var majorRiversLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Major_Rivers/FeatureServer",
+        title: "Major Rivers",
+        popupTemplate: riversPopupTemplate  // Assign the popup template to this layer
+    });
     
-        var giantSequoiaGrovesLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Giant_Sequoia_Groves/FeatureServer",
-            title: "Giant Sequoia Groves"
-        });
+
+    var sequoiaPopupTemplate = new PopupTemplate({
+        title: "{Grove_Name}",  // Display the grove name as the popup title
+        content: "The {Grove_Name} covers an area of {Acres} acres."  // Content displaying the grove name and acreage
+    });
+
+    var giantSequoiaGrovesLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Giant_Sequoia_Groves/FeatureServer",
+        title: "Giant Sequoia Groves",
+        popupTemplate: sequoiaPopupTemplate  // Assign the popup template to this layer
+    });
     
-        var namedSequoiaTreesLayer = new FeatureLayer({
-            url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Named_Sequoia_Trees/FeatureServer",
-            title: "Named Sequoia Trees"
-        });
+    var namedSequoiaTreesLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Named_Sequoia_Trees/FeatureServer",
+        title: "Named Sequoia Trees"
+    });
     
-        // Create a GroupLayer to hold the natural feature FeatureLayers
-        var naturalFeaturesGroupLayer = new GroupLayer({
-            title: "Natural Features",
-            layers: [ecologicalZonesLayer, majorRiversLayer, giantSequoiaGrovesLayer, namedSequoiaTreesLayer],
-            visible: false,
-            visibilityMode: "independent"
-        });
+    // Create a GroupLayer to hold the natural feature FeatureLayers
+    var naturalFeaturesGroupLayer = new GroupLayer({
+        title: "Natural Features",
+        layers: [ecologicalZonesLayer, majorRiversLayer, giantSequoiaGrovesLayer, namedSequoiaTreesLayer],
+        visible: false,
+        visibilityMode: "independent"
+    });
 
      // Add the GroupLayer to the map
     map.add(boundariesGroupLayer);
