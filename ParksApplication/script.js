@@ -24,18 +24,32 @@ require([
         center: [-118.5750, 36.75]  // longitude, latitude to Kings Canyon and Sequoia National Park
     });
 
-    var legend = new Legend({
-        view: view,
-        style: "classic" // Set the legend to use the classic style
-    });
+// Create the Legend
+var legend = new Legend({
+    view: view,
+    style: "classic",
+    container: document.createElement("div")  // Create a new div for the Legend so we can toggle its visibility
+});
 
-    var legendExpand = new Expand({
-        view: view,
-        content: legend,
-        expanded: true
-    });
+// Create a custom button to toggle the Legend visibility
+var legendButton = document.createElement("button");
+legendButton.className = "toggleLegend";  // A new class for CSS styling
+legendButton.innerHTML = "Toggle Legend";
+legendButton.onclick = function() {
+    // Toggle the visibility of the Legend's container
+    if (legend.container.style.display === "none") {
+        legend.container.style.display = "block";
+    } else {
+        legend.container.style.display = "none";
+    }
+};
 
-    view.ui.add(legendExpand, "bottom-left");  // Add the expand instance to the ui
+// Initially, let's hide the Legend
+legend.container.style.display = "none";
+
+// Add the custom button and the Legend to the bottom-left corner
+view.ui.add(legendButton, "bottom-left");
+view.ui.add(legend.container, "bottom-left");
 
     var basemapGallery = new BasemapGallery({
         view: view,  // The view that provides access to the map's basemap(s)

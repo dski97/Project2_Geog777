@@ -59,3 +59,30 @@ button.toggleLayers:active {
     transform: translateY(4px); /* Slight shift down when button pressed */
 }
 
+/* Modern Button Style for Legend */
+button.toggleLegend {
+    background-color: #0099CC; /* Different primary color for differentiation */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+button.toggleLegend:hover {
+    background-color: white;
+    color: #0099CC;
+}
+
+button.toggleLegend:active {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    transform: translateY(4px);
+}
+
