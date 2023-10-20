@@ -382,4 +382,70 @@ layerList.container.style.display = "none";
 // Add the LayerList and the toggle button to the bottom-right corner
 view.ui.add(layerListButton, "bottom-right");
 view.ui.add(layerList.container, "bottom-right");
+
+// Create the main "Wildlife" button
+var wildlifeButton = document.createElement("button");
+wildlifeButton.className = "wildlifeMain";
+wildlifeButton.innerHTML = "Wildlife";
+
+// Create the "View Wildlife of the Parks" button
+var viewWildlifeButton = document.createElement("button");
+viewWildlifeButton.className = "wildlifeSide";
+viewWildlifeButton.innerHTML = "View Wildlife of the Parks";
+
+// Create the "Submit a Wildlife Sighting" button
+var submitWildlifeButton = document.createElement("button");
+submitWildlifeButton.className = "wildlifeSide";
+submitWildlifeButton.innerHTML = "Submit a Wildlife Sighting";
+
+// Add event listener for click on main button (wildlifeButton)
+wildlifeButton.addEventListener('click', function(event) {
+    if (wildlifeButton.classList.contains('expanded')) {
+        wildlifeButton.classList.remove('expanded');
+    } else {
+        wildlifeButton.classList.add('expanded');
+    }
+    event.stopPropagation(); // to prevent the document click from immediately hiding
+});
+
+// Add event listener for click outside of button area
+document.addEventListener('click', function(event) {
+    if (!wildlifeButton.contains(event.target) && !event.target.classList.contains('wildlifeSide')) {
+        wildlifeButton.classList.remove('expanded');
+    }
+});
+
+// Add event listener for click on "Submit a Wildlife Sighting" button
+submitWildlifeButton.addEventListener('click', function() {
+    window.open("https://arcg.is/185H04", "_blank");
+});
+
+var modal = document.getElementById("wildlifeModal");
+var closeBtn = document.getElementById("closeBtn");
+
+viewWildlifeButton.addEventListener('click', function() {
+    modal.style.display = "block";
+});
+
+closeBtn.addEventListener('click', function() {
+    modal.style.display = "none";
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Add the buttons to the view
+var wildlifeContainer = document.createElement("div");
+wildlifeContainer.className = "wildlifeContainer";
+wildlifeContainer.appendChild(wildlifeButton);
+wildlifeContainer.appendChild(viewWildlifeButton);
+wildlifeContainer.appendChild(submitWildlifeButton);
+
+
+
+view.ui.add(wildlifeContainer, "top-right");
+
 });
