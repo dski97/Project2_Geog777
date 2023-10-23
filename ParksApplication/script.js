@@ -68,6 +68,18 @@ view.ui.add(legend.container, "bottom-left");
     
     view.ui.add(bgExpand, "top-left");  // Adds the BasemapGallery widget to the top-left corner of the view
 
+
+    var wildlifeSpottedLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_1a41216f9d2c4a3585d369fdd0a3d4f1_results/FeatureServer/0",
+        title: "Wildlife Spotted"
+      });
+
+    var wildlifeSpottedLayerGroup = new GroupLayer({
+        title: "Wildlife Spotted",
+        layers: [wildlifeSpottedLayer],
+        visible: true
+    });
+
     var parkBoundaryPopupTemplate = new PopupTemplate({
         title: "<span style='color: red;'>{FullName}</span>",
         content: [
@@ -354,6 +366,7 @@ view.ui.add(legend.container, "bottom-left");
     map.add(trailsGroupLayer)
     map.add(infrastructureGroupLayer);
     map.add(parkInformationGroupLayer)
+    map.add(wildlifeSpottedLayerGroup)
 
 
 
