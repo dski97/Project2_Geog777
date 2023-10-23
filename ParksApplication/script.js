@@ -437,14 +437,34 @@ window.addEventListener('click', function(event) {
     }
 });
 
+let overlay = document.getElementById("overlay");
+let overlayImage = document.getElementById("overlayImage");
+
+document.addEventListener("click", function(event) {
+    if(event.target.tagName === "IMG" && event.target.parentNode.classList.contains("wildlifeItem")) {
+        overlayImage.src = event.target.src;
+        overlay.style.display = "flex";
+        event.stopPropagation(); // This stops the click event from reaching the overlay div
+    }
+});
+
+overlay.addEventListener("click", function(event) {
+    if (event.target === overlay) { // Only close if the overlay itself (not the image) was clicked
+        closeOverlay();
+    }
+});
+
+function closeOverlay() {
+    overlay.style.display = "none";
+}
+
+
 // Add the buttons to the view
 var wildlifeContainer = document.createElement("div");
 wildlifeContainer.className = "wildlifeContainer";
 wildlifeContainer.appendChild(wildlifeButton);
 wildlifeContainer.appendChild(viewWildlifeButton);
 wildlifeContainer.appendChild(submitWildlifeButton);
-
-
 
 view.ui.add(wildlifeContainer, "top-right");
 
