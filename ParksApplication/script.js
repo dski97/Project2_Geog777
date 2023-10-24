@@ -24,49 +24,24 @@ require([
         center: [-118.5750, 36.75]  // longitude, latitude to Kings Canyon and Sequoia National Park
     });
 
-// Create the Legend
-var legend = new Legend({
-    view: view,
-    style: "classic",
-    container: document.createElement("div")  // Create a new div for the Legend so we can toggle its visibility
-});
-
-// Create a custom button to toggle the Legend visibility
-var legendButton = document.createElement("button");
-legendButton.className = "toggleLegend";  // A new class for CSS styling
-legendButton.innerHTML = "Toggle Legend";
-legendButton.onclick = function() {
-    // Toggle the visibility of the Legend's container
-    if (legend.container.style.display === "none") {
-        legend.container.style.display = "block";
-    } else {
-        legend.container.style.display = "none";
-    }
-};
-
-// Initially, let's hide the Legend
-legend.container.style.display = "none";
-
-// Add the custom button and the Legend to the bottom-left corner
-view.ui.add(legendButton, "bottom-left");
-view.ui.add(legend.container, "bottom-left");
-
-    var basemapGallery = new BasemapGallery({
-        view: view,  // The view that provides access to the map's basemap(s)
-        source: {
-            portal: {
-                url: "https://www.arcgis.com",
-                useVectorBasemaps: true  // Load vector tile basemap group
+    // Create the BasemapGallery widget
+        var basemapGallery = new BasemapGallery({
+            view: view,
+            source: {
+                portal: {
+                    url: "https://www.arcgis.com",
+                    useVectorBasemaps: true  // Load vector tile basemaps
+                }
             }
-        }
-    });
-    
-    var bgExpand = new Expand({
-        view: view,
-        content: basemapGallery
-    });
-    
-    view.ui.add(bgExpand, "top-left");  // Adds the BasemapGallery widget to the top-left corner of the view
+        });
+
+        var bgExpand = new Expand({
+            view: view,
+            content: basemapGallery
+        });
+            
+        // Adds the BasemapGallery widget to the bottom-left corner of the view
+view.ui.add(bgExpand, "bottom-left");  
 
 
    // Define Unique Value Renderer
@@ -170,8 +145,62 @@ const uniqueValueRenderer = {
   var wildlifeSpottedLayer = new FeatureLayer({
     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/survey123_1a41216f9d2c4a3585d369fdd0a3d4f1_results/FeatureServer",
     title: "Wildlife Spotted",
-    renderer: uniqueValueRenderer  // Set the renderer
+    renderer: uniqueValueRenderer, // Set the renderer
+    popupTemplate: {
+      title: "Wildlife Sighting Details",
+      content: [
+        {
+          type: "fields",
+          fieldInfos: [
+            {
+              fieldName: "wildlife_animal_observed",
+              label: "Wildlife Animal Observed",
+              visible: true
+            },
+            {
+              fieldName: "wild_other",
+              label: "Other - Wildlife Animal Observed",
+              visible: true
+            },
+            {
+              fieldName: "date_and_time_of_sighting",
+              label: "Date and Time of Sighting",
+              visible: true,
+              format: {
+                dateFormat: "short-date-short-time"
+              }
+            },
+            {
+              fieldName: "weather_conditions",
+              label: "Weather Conditions",
+              visible: true
+            },
+            {
+              fieldName: "observed_behaviour",
+              label: "Observed Behaviour",
+              visible: true
+            },
+            {
+              fieldName: "habitat_type",
+              label: "Habitat Type",
+              visible: true
+            },
+            {
+              fieldName: "notes",
+              label: "Notes",
+              visible: true
+            },
+            {
+              fieldName: "Photos And Files",
+              label: "Photos and Files",
+              visible: true
+            }
+          ]
+        }
+      ]
+    }
   });
+  
   
   var wildlifeSpottedLayerGroup = new GroupLayer({
     title: "Wildlife Spotted",
@@ -466,118 +495,4 @@ const uniqueValueRenderer = {
     map.add(infrastructureGroupLayer);
     map.add(parkInformationGroupLayer)
     map.add(wildlifeSpottedLayerGroup)
-
-
-
-// Continue from your code
-var layerList = new LayerList({
-    view: view,
-    container: document.createElement("div") // Create a new div for the LayerList so we can toggle its visibility
-});
-
-// Create a custom button to toggle LayerList
-var layerListButton = document.createElement("button");
-layerListButton.className = "toggleLayers";
-layerListButton.innerHTML = "Toggle Layers";
-layerListButton.onclick = function() {
-    // Toggle the visibility of the LayerList's container
-    if (layerList.container.style.display === "none") {
-        layerList.container.style.display = "block";
-    } else {
-        layerList.container.style.display = "none";
-    }
-};
-
-// Initially, let's hide the LayerList
-layerList.container.style.display = "none";
-
-// Add the LayerList and the toggle button to the bottom-right corner
-view.ui.add(layerListButton, "bottom-right");
-view.ui.add(layerList.container, "bottom-right");
-
-// Create the main "Wildlife" button
-var wildlifeButton = document.createElement("button");
-wildlifeButton.className = "wildlifeMain";
-wildlifeButton.innerHTML = "Wildlife";
-
-// Create the "View Wildlife of the Parks" button
-var viewWildlifeButton = document.createElement("button");
-viewWildlifeButton.className = "wildlifeSide";
-viewWildlifeButton.innerHTML = "View Wildlife of the Parks";
-
-// Create the "Submit a Wildlife Sighting" button
-var submitWildlifeButton = document.createElement("button");
-submitWildlifeButton.className = "wildlifeSide";
-submitWildlifeButton.innerHTML = "Submit a Wildlife Sighting";
-
-// Add event listener for click on main button (wildlifeButton)
-wildlifeButton.addEventListener('click', function(event) {
-    if (wildlifeButton.classList.contains('expanded')) {
-        wildlifeButton.classList.remove('expanded');
-    } else {
-        wildlifeButton.classList.add('expanded');
-    }
-    event.stopPropagation(); // to prevent the document click from immediately hiding
-});
-
-// Add event listener for click outside of button area
-document.addEventListener('click', function(event) {
-    if (!wildlifeButton.contains(event.target) && !event.target.classList.contains('wildlifeSide')) {
-        wildlifeButton.classList.remove('expanded');
-    }
-});
-
-// Add event listener for click on "Submit a Wildlife Sighting" button
-submitWildlifeButton.addEventListener('click', function() {
-    window.open("https://arcg.is/185H04", "_blank");
-});
-
-var modal = document.getElementById("wildlifeModal");
-var closeBtn = document.getElementById("closeBtn");
-
-viewWildlifeButton.addEventListener('click', function() {
-    modal.style.display = "block";
-});
-
-closeBtn.addEventListener('click', function() {
-    modal.style.display = "none";
-});
-
-window.addEventListener('click', function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
-
-let overlay = document.getElementById("overlay");
-let overlayImage = document.getElementById("overlayImage");
-
-document.addEventListener("click", function(event) {
-    if(event.target.tagName === "IMG" && event.target.parentNode.classList.contains("wildlifeItem")) {
-        overlayImage.src = event.target.src;
-        overlay.style.display = "flex";
-        event.stopPropagation(); // This stops the click event from reaching the overlay div
-    }
-});
-
-overlay.addEventListener("click", function(event) {
-    if (event.target === overlay) { // Only close if the overlay itself (not the image) was clicked
-        closeOverlay();
-    }
-});
-
-function closeOverlay() {
-    overlay.style.display = "none";
-}
-
-
-// Add the buttons to the view
-var wildlifeContainer = document.createElement("div");
-wildlifeContainer.className = "wildlifeContainer";
-wildlifeContainer.appendChild(wildlifeButton);
-wildlifeContainer.appendChild(viewWildlifeButton);
-wildlifeContainer.appendChild(submitWildlifeButton);
-
-view.ui.add(wildlifeContainer, "top-right");
-
 });
