@@ -69,16 +69,115 @@ view.ui.add(legend.container, "bottom-left");
     view.ui.add(bgExpand, "top-left");  // Adds the BasemapGallery widget to the top-left corner of the view
 
 
-    var wildlifeSpottedLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_1a41216f9d2c4a3585d369fdd0a3d4f1_results/FeatureServer/0",
-        title: "Wildlife Spotted"
-      });
-
-    var wildlifeSpottedLayerGroup = new GroupLayer({
-        title: "Wildlife Spotted",
-        layers: [wildlifeSpottedLayer],
-        visible: true
-    });
+   // Define Unique Value Renderer
+const uniqueValueRenderer = {
+    type: "unique-value",
+    field: "wildlife_animal_observed",
+    uniqueValueInfos: [
+      {
+        value: "Black Bear",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/bear.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Mule Deer",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/deer.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Gray Squirrel/Chipmunk",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/chipmunk.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Birds of Prey (hawks, eagles, owls)",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/bird.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Amphibians (frogs, salamanders)",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/frog.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Raccoon/Marten",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/racoon.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Songbirds (robins, finches, etc.)",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/bird.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Bats",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/bats.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Reptiles (lizards, snakes)",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/reptile.png",
+          width: "24px",
+          height: "24px"
+        }
+      },
+      {
+        value: "Other",
+        symbol: {
+          type: "picture-marker",
+          url: "icons/other.png",
+          width: "24px",
+          height: "24px"
+        }
+      }
+    ]
+  };
+  
+  var wildlifeSpottedLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/survey123_1a41216f9d2c4a3585d369fdd0a3d4f1_results/FeatureServer",
+    title: "Wildlife Spotted",
+    renderer: uniqueValueRenderer  // Set the renderer
+  });
+  
+  var wildlifeSpottedLayerGroup = new GroupLayer({
+    title: "Wildlife Spotted",
+    layers: [wildlifeSpottedLayer],
+    visible: false,
+  });
 
     var parkBoundaryPopupTemplate = new PopupTemplate({
         title: "<span style='color: red;'>{FullName}</span>",
