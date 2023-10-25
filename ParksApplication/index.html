@@ -1,18 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Sequoia and Kings Canyon Park</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+    <link rel="icon" href="data:;base64,=" />
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <!-- Load the ArcGIS Maps SDK for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css" />
+    <script src="https://js.arcgis.com/4.28/"></script>
+
+    <!-- Load the Map Components -->
+    <script type="module" src="https://js.arcgis.com/map-components/4.28/arcgis-map-components.esm.js"></script>
 </head>
+
 <body>
-    <div id="viewDiv"></div>
-    <div id="overlay" onclick="closeOverlay()">
-        <img id="overlayImage">
-    </div>
+
+
+    <arcgis-map item-id="b6647e209d7b456c92a6c771a93a3a0e">
+        
+        <arcgis-search position="top-left" expandable />
+
+        <arcgis-compass position="top-left" />
+
+        <arcgis-locate position="top-left" />
+
+        <arcgis-layer-list position="top-right" expandable />
+
+
+        <arcgis-legend position="top-right" expandable hide-layers-not-in-current-view />
+
+        <arcgis-distance-measurement-2d position="top-right" expandable unit="miles"/>
+
+        <arcgis-elevation-profile position="top-right" expandable />
+
+        <arcgis-print position="top-right" expandable />
+
+        <arcgis-basemap-gallery position="bottom-left" expandable />
+        
+        <arcgis-scale-bar view="MapView" position="bottom-right" expandable="false" bar-style="ruler" unit="imperial" hydrated="" />
+
+      </arcgis-map>
     
     <!-- //Modal for wildlife
     <div class="wildlifeModal" id="wildlifeModal">
@@ -92,8 +120,5 @@
     
     </div>
 -->    
-
-    <script src="https://js.arcgis.com/4.28/"></script>
-    <script src="script.js"></script>
 </body>
 </html>
