@@ -9,16 +9,89 @@
     <!-- Load the ArcGIS Maps SDK for JavaScript -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css" />
     <script src="https://js.arcgis.com/4.28/"></script>
-
-    <!-- Load the Map Components -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/1.9.2/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.9.2/calcite.css" />
     <script type="module" src="https://js.arcgis.com/map-components/4.28/arcgis-map-components.esm.js"></script>
 </head>
 
 <body>
+ 
+    <calcite-shell>
+        <calcite-navigation slot="header">
+            <calcite-navigation-logo slot="logo"
+            active 
+            heading="Sequoia and Kings Canyon National Parks"
+            description="A National Park Service Web Application"
+            target="_blank"/>
+        </calcite-navigation>
+
+        <calcite-modal aria-labelledby="modal-title" id="example-modal" kind="info" scale="m" width="l">
+            <div slot="header" id="modal-title">
+                Read the terms
+            </div>
+            <div slot="content-top">Scroll to accept the terms</div>
+            <div slot="content">
+                <p>
+                    Curabitur mauris quam, tempor sit amet massa sed, mattis blandit diam. Proin dignissim leo vitae quam
+                    fringilla viverra. Ut eget
+                    gravida magna, et tincidunt dui. Nullam a finibus ante, eu dignissim eros. Aenean sodales sollicitudin dui
+                    in fermentum. Fusce egestas
+                    erat nec eros sodales ornare. Ut malesuada est tortor, vitae semper turpis rutrum at. Donec suscipit, nulla
+                    in euismod luctus, nulla
+                    sapien interdum tortor, a iaculis elit mi sed lectus. Morbi in congue metus, non imperdiet ex. Nunc et neque
+                    tempor, porttitor est
+                    sed, vestibulum risus. Integer non erat libero.
+                </p>
+                <p>
+                    Cras sagittis vel neque sed efficitur. Vestibulum mattis diam eget urna condimentum tempus. Donec malesuada
+                    velit sit amet metus
+                    faucibus pharetra. Sed sit amet massa facilisis, porttitor nunc vitae, sollicitudin mauris. Nullam nec
+                    rhoncus augue. Praesent rhoncus
+                    varius sapien, sit amet porttitor nisl varius eu. Pellentesque at eros eget metus dignissim lacinia. Sed sed
+                    justo eget sapien
+                    ultrices commodo. Donec eget pretium urna. Vestibulum ut tortor ut quam viverra dictum. Morbi ut turpis
+                    velit. Phasellus maximus lacus
+                    nunc, ac consequat est varius in. Nullam facilisis, purus ut aliquet condimentum, est tortor accumsan justo,
+                    at sagittis urna dolor
+                    eget lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                </p>
+                <p>
+                    Curabitur mauris quam, tempor sit amet massa sed, mattis blandit diam. Proin dignissim leo vitae quam
+                    fringilla viverra. Ut eget
+                    gravida magna, et tincidunt dui. Nullam a finibus ante, eu dignissim eros. Aenean sodales sollicitudin dui
+                    in fermentum. Fusce egestas
+                    erat nec eros sodales ornare. Ut malesuada est tortor, vitae semper turpis rutrum at. Donec suscipit, nulla
+                    in euismod luctus, nulla
+                    sapien interdum tortor, a iaculis elit mi sed lectus. Morbi in congue metus, non imperdiet ex. Nunc et neque
+                    tempor, porttitor est
+                    sed, vestibulum risus. Integer non erat libero.
+                </p>
+                <p>
+                    Cras sagittis vel neque sed efficitur. Vestibulum mattis diam eget urna condimentum tempus. Donec malesuada
+                    velit sit amet metus
+                    faucibus pharetra. Sed sit amet massa facilisis, porttitor nunc vitae, sollicitudin mauris. Nullam nec
+                    rhoncus augue. Praesent rhoncus
+                    varius sapien, sit amet porttitor nisl varius eu. Pellentesque at eros eget metus dignissim lacinia. Sed sed
+                    justo eget sapien
+                    ultrices commodo. Donec eget pretium urna. Vestibulum ut tortor ut quam viverra dictum. Morbi ut turpis
+                    velit. Phasellus maximus lacus
+                    nunc, ac consequat est varius in. Nullam facilisis, purus ut aliquet condimentum, est tortor accumsan justo,
+                    at sagittis urna dolor
+                    eget lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                </p>
+            </div>
+            <calcite-button slot="primary" width="full">
+                I'm done
+            </calcite-button>
+        </calcite-modal>
+        <calcite-button id="example-button" icon-start="book">
+            Read the terms and conditions
+        </calcite-button>
+
+
 
     <arcgis-map item-id="b6647e209d7b456c92a6c771a93a3a0e">
 
-        
         <arcgis-search position="top-left" expandable />
 
         <arcgis-compass position="top-left" />
@@ -26,7 +99,6 @@
         <arcgis-locate position="top-left" />
 
         <arcgis-layer-list position="top-right" expandable />
-
 
         <arcgis-legend position="top-right" expandable hide-layers-not-in-current-view />
 
@@ -39,10 +111,11 @@
         <arcgis-basemap-gallery position="bottom-left" expandable />
         
         <arcgis-scale-bar view="MapView" position="bottom-right" expandable="false" bar-style="ruler" unit="imperial" hydrated="" />
-
+        
       </arcgis-map>
     
     <!-- //Modal for wildlife
+
     <div class="wildlifeModal" id="wildlifeModal">
         <div class="modalContent">
             <span class="closeBtn" id="closeBtn">&times;</span>
@@ -120,5 +193,7 @@
     
     </div>
 -->    
+    </calcite-shell>
+    <script src="calcite.js"></script>
 </body>
 </html>

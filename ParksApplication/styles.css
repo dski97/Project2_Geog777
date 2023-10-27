@@ -6,3 +6,16 @@ body {
   width: 100vw;
   height: 100vh;
 }
+arcgis-map {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  calcite-navigation {
+    --calcite-navigation-width: 1;
+}
+calcite-label[slot="content-bottom"] {
+  --calcite-label-margin-bottom: 0;
+}
