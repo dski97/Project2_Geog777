@@ -6,16 +6,82 @@ body {
   width: 100vw;
   height: 100vh;
 }
-arcgis-map {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
 
-  calcite-navigation {
+#map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+arcgis-map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#button-container {
+  position: absolute;
+  bottom: 70px;
+  right: 10px;
+  z-index: 1;
+}
+
+
+calcite-navigation {
     --calcite-navigation-width: 1;
+    --calcite-ui-foreground-1 : #000000;
+    --calcite-ui-text-1 : #ffffff;
+    --calcite-ui-text-2 : #ffffff;
 }
-calcite-label[slot="content-bottom"] {
-  --calcite-label-margin-bottom: 0;
+
+calcite-button {
+  --calcite-ui-brand: #060608;
+  --calcite-ui-brand-hover: #4d4d4d;
+  --calcite-ui-brand-press: #696969;
 }
+
+.center-text {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Header styles */
+#modal-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* Content styles */
+.wildlifeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wildlifeItem {
+  display: flex;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  align-items: flex-start; /* align items to the start of the flex container */
+}
+
+.wildlifeItem img {
+  flex-shrink: 0; /* prevent image from shrinking */
+  width: 150px; /* or you can use a percentage like 30% */
+  height: auto; /* maintain aspect ratio */
+  border-radius: 8px;
+  margin-right: 16px; /* space between image and text */
+}
+
+.wildlifeItem p {
+  flex-grow: 1; /* allow text to grow and take up remaining space */
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+

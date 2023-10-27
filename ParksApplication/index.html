@@ -18,7 +18,9 @@
  
     <calcite-shell>
         <calcite-navigation slot="header">
-            <calcite-navigation-logo slot="logo"
+            <calcite-navigation-logo 
+            slot="logo"
+            id="navLogo"
             active 
             heading="Sequoia and Kings Canyon National Parks"
             description="A National Park Service Web Application"
@@ -27,70 +29,87 @@
 
         <calcite-modal aria-labelledby="modal-title" id="example-modal" kind="info" scale="m" width="l">
             <div slot="header" id="modal-title">
-                Read the terms
+                Wildlife Overview
             </div>
-            <div slot="content-top">Scroll to accept the terms</div>
             <div slot="content">
-                <p>
-                    Curabitur mauris quam, tempor sit amet massa sed, mattis blandit diam. Proin dignissim leo vitae quam
-                    fringilla viverra. Ut eget
-                    gravida magna, et tincidunt dui. Nullam a finibus ante, eu dignissim eros. Aenean sodales sollicitudin dui
-                    in fermentum. Fusce egestas
-                    erat nec eros sodales ornare. Ut malesuada est tortor, vitae semper turpis rutrum at. Donec suscipit, nulla
-                    in euismod luctus, nulla
-                    sapien interdum tortor, a iaculis elit mi sed lectus. Morbi in congue metus, non imperdiet ex. Nunc et neque
-                    tempor, porttitor est
-                    sed, vestibulum risus. Integer non erat libero.
-                </p>
-                <p>
-                    Cras sagittis vel neque sed efficitur. Vestibulum mattis diam eget urna condimentum tempus. Donec malesuada
-                    velit sit amet metus
-                    faucibus pharetra. Sed sit amet massa facilisis, porttitor nunc vitae, sollicitudin mauris. Nullam nec
-                    rhoncus augue. Praesent rhoncus
-                    varius sapien, sit amet porttitor nisl varius eu. Pellentesque at eros eget metus dignissim lacinia. Sed sed
-                    justo eget sapien
-                    ultrices commodo. Donec eget pretium urna. Vestibulum ut tortor ut quam viverra dictum. Morbi ut turpis
-                    velit. Phasellus maximus lacus
-                    nunc, ac consequat est varius in. Nullam facilisis, purus ut aliquet condimentum, est tortor accumsan justo,
-                    at sagittis urna dolor
-                    eget lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                </p>
-                <p>
-                    Curabitur mauris quam, tempor sit amet massa sed, mattis blandit diam. Proin dignissim leo vitae quam
-                    fringilla viverra. Ut eget
-                    gravida magna, et tincidunt dui. Nullam a finibus ante, eu dignissim eros. Aenean sodales sollicitudin dui
-                    in fermentum. Fusce egestas
-                    erat nec eros sodales ornare. Ut malesuada est tortor, vitae semper turpis rutrum at. Donec suscipit, nulla
-                    in euismod luctus, nulla
-                    sapien interdum tortor, a iaculis elit mi sed lectus. Morbi in congue metus, non imperdiet ex. Nunc et neque
-                    tempor, porttitor est
-                    sed, vestibulum risus. Integer non erat libero.
-                </p>
-                <p>
-                    Cras sagittis vel neque sed efficitur. Vestibulum mattis diam eget urna condimentum tempus. Donec malesuada
-                    velit sit amet metus
-                    faucibus pharetra. Sed sit amet massa facilisis, porttitor nunc vitae, sollicitudin mauris. Nullam nec
-                    rhoncus augue. Praesent rhoncus
-                    varius sapien, sit amet porttitor nisl varius eu. Pellentesque at eros eget metus dignissim lacinia. Sed sed
-                    justo eget sapien
-                    ultrices commodo. Donec eget pretium urna. Vestibulum ut tortor ut quam viverra dictum. Morbi ut turpis
-                    velit. Phasellus maximus lacus
-                    nunc, ac consequat est varius in. Nullam facilisis, purus ut aliquet condimentum, est tortor accumsan justo,
-                    at sagittis urna dolor
-                    eget lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                </p>
+                <div class="wildlifeList">
+                    <div class="wildlifeItem">
+                        <img src="images\bear.jpg" alt="Black Bear">
+                        <p>The Black Bear is one of the most iconic residents of Sequoia and Kings Canyon National Parks. These bears, which can range in color from black to brown, play a vital role in the park's ecosystem. They're omnivores and their diet can include plants, berries, insects, and even fish from the park's streams. While they are often seen during the day, they are primarily nocturnal creatures.
+                         Visitors are reminded to store food properly and keep a safe distance when encountering these majestic creatures to ensure their safety and that of the bears.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/mule_deer.jpg" alt="Mule Deer">
+                        <p>The Mule Deer, recognized by its large mule-like ears, is a common sight in the meadows and forests of Sequoia and Kings Canyon National Parks. These graceful animals are herbivores, and they feed on a variety of plants available in the park. The males, known as bucks, have impressive antlers that they shed and regrow annually. During the fall, visitors might witness the fascinating rutting season, where bucks compete for the attention of does.
+                             Like all wildlife in the park, Mule Deer should be observed from a distance to avoid disturbing them and ensure the safety of all.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/chipmunk.jpg" alt="Gray Squirrel/Chipmunk">
+                        <p>If you've ever heard a rustling in the underbrush or spotted something darting from tree to tree, chances are you've encountered the mischievous Gray Squirrel or its tiny counterpart, the Chipmunk. These spry little creatures are the acrobats of the park, often seen scampering up trunks or leaping between branches. While the Gray Squirrel busies itself hoarding acorns for winter,
+                             the striped Chipmunk flits about, its cheeks stuffed with seeds. A word to the wise? Watch your snacks! These little opportunists have a knack for sneaky nibbles.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/birds.jpg" alt="Birds of Prey">
+                        <p>Soaring high above the towering sequoias, the birds of prey cut a majestic silhouette against the sky. Whether it's the fierce gaze of a hawk scanning the ground for a meal, the imposing wingspan of an eagle gliding effortlessly, or the silent swoop of an owl under the moonlight, these avian rulers are a testament to the wild spirit of the parks. Their sharp eyesight and 
+                            hunting prowess make them top-tier predators, maintaining the delicate balance of the ecosystem.
+                        </p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/amphs.jpg" alt="Amphibians">
+                        <p>Tucked away in the moist nooks and crannies of the parks are the unsung heroes of the wetlands - the amphibians. From the melodic croak of frogs by the water's edge to the silent, stealthy movements of salamanders in the undergrowth, these creatures are a vital link in the park's food chain. They're nature's barometers, their presence (or absence) often indicating the
+                             health of the environment. So, next time you're by a pond, take a moment. Who knows? You might just spot a frog prince waiting for a kiss!</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/marten.jpg" alt="Raccoon/Marten">
+                        <p>Night's curtain often unveils the forest's masked marauders - the Raccoons. With dexterous hands, they are the park's little mischief-makers, curiously exploring and often causing a bit of benign chaos. In the same nocturnal realm, the elusive Marten moves with grace, its sleek body navigating the branches high above. Whereas the raccoon plays the role of the forest 
+                            jester, the marten remains the shadowy acrobat.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/songbirds.jpg" alt="Songbirds">
+                        <p>Wake up in the parks, and you'll be serenaded by nature's very own choir. Songbirds, from the cheerful robin to the chirpy finch, fill the air with melodies that range from soft lullabies at dawn to vibrant anthems by midday. Each tweet, chirp, and song tells a tale – be it a call for a mate or a claim of territory. Their colorful plumes add splashes of joy to the 
+                            green canvas, making a walk in the woods feel like a journey through a living painting.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/bats.jpg" alt="Bats">
+                        <p>As twilight blankets the park, bats take to the skies in a dance of dusk. These nocturnal fliers are the unsung heroes of the night, keeping insect populations in check and pollinating flowers under the cover of darkness. Far from the spooky tales that surround them, bats are fascinating creatures with echolocation skills that would put the best sonar systems to 
+                            shame. So next time you spot them at twilight, remember: they're the park's silent guardians.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/reptiles.jpg" alt="Reptiles">
+                        <p>Sunbathing on a rock or slithering in the shadows, reptiles are the ancient denizens of these parks. Lizards, with their darting tongues and scaly armor, are like little dragons guarding their rocky realms. Snakes, meanwhile, weave their sinuous paths through the underbrush, embodying grace and potential danger in one sleek package. Respect their space, and they'll
+                             reward you with a glimpse into the primordial world.</p>
+                    </div>
+        
+                    <div class="wildlifeItem">
+                        <img src="images/trees.jpg" alt="Other">
+                        <p>Sequoia and Kings Canyon National Parks are home to a diverse array of creatures. Beyond the animals listed, there are many species that may be lesser-known but are just as integral to the ecosystem. From insects to unidentified sounds in the night, the parks are teeming with life. Always be observant and respectful, for every creature, big or small, plays a role in
+                             the delicate balance of nature.
+    
+                            .</p>
+                    </div>
+                </div>
             </div>
             <calcite-button slot="primary" width="full">
-                I'm done
+                All set!
             </calcite-button>
         </calcite-modal>
-        <calcite-button id="example-button" icon-start="book">
-            Read the terms and conditions
-        </calcite-button>
 
+    <calcite-popover reference-element="navLogo" auto-close="true" open heading="Welcome to the Sequoia and Kings Canyon National Park Web App!">
+        <div class="center-text">
+            <p>Welcome to the web application! Here you will find information about...</p>
+        </div>
+    </calcite-popover>
 
-
-    <arcgis-map item-id="b6647e209d7b456c92a6c771a93a3a0e">
+    <div id ="map-container">
+        <arcgis-map item-id="b6647e209d7b456c92a6c771a93a3a0e">
 
         <arcgis-search position="top-left" expandable />
 
@@ -111,89 +130,18 @@
         <arcgis-basemap-gallery position="bottom-left" expandable />
         
         <arcgis-scale-bar view="MapView" position="bottom-right" expandable="false" bar-style="ruler" unit="imperial" hydrated="" />
-        
-      </arcgis-map>
-    
-    <!-- //Modal for wildlife
 
-    <div class="wildlifeModal" id="wildlifeModal">
-        <div class="modalContent">
-            <span class="closeBtn" id="closeBtn">&times;</span>
-            <h3>Wildlife Overview</h3>
-            <p>Sequoia and Kings Canyon National Parks, nestled in California's Sierra Nevada mountains, offer a unique combination of giant sequoias, rugged landscapes, and diverse wildlife. These parks are not just a haven for trees that touch the skies but also for a wide array of animals that call these parks home. From the majestic Black Bear roaming the forest floors to
-                 the agile Mule Deer grazing on the meadows, each species contributes to the rich tapestry of life in these parks. Here's a deeper look into some of these wonderful creatures:</p>
-            <div class="wildlifeList">
-                
-                <div class="wildlifeItem">
-                    <img src="images\bear.jpg" alt="Black Bear">
-                    <p>The Black Bear is one of the most iconic residents of Sequoia and Kings Canyon National Parks. These bears, which can range in color from black to brown, play a vital role in the park's ecosystem. They're omnivores and their diet can include plants, berries, insects, and even fish from the park's streams. While they are often seen during the day, they are primarily nocturnal creatures.
-                     Visitors are reminded to store food properly and keep a safe distance when encountering these majestic creatures to ensure their safety and that of the bears.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/mule_deer.jpg" alt="Mule Deer">
-                    <p>The Mule Deer, recognized by its large mule-like ears, is a common sight in the meadows and forests of Sequoia and Kings Canyon National Parks. These graceful animals are herbivores, and they feed on a variety of plants available in the park. The males, known as bucks, have impressive antlers that they shed and regrow annually. During the fall, visitors might witness the fascinating rutting season, where bucks compete for the attention of does.
-                         Like all wildlife in the park, Mule Deer should be observed from a distance to avoid disturbing them and ensure the safety of all.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/chipmunk.jpg" alt="Gray Squirrel/Chipmunk">
-                    <p>If you've ever heard a rustling in the underbrush or spotted something darting from tree to tree, chances are you've encountered the mischievous Gray Squirrel or its tiny counterpart, the Chipmunk. These spry little creatures are the acrobats of the park, often seen scampering up trunks or leaping between branches. While the Gray Squirrel busies itself hoarding acorns for winter,
-                         the striped Chipmunk flits about, its cheeks stuffed with seeds. A word to the wise? Watch your snacks! These little opportunists have a knack for sneaky nibbles.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/birds.jpg" alt="Birds of Prey">
-                    <p>Soaring high above the towering sequoias, the birds of prey cut a majestic silhouette against the sky. Whether it's the fierce gaze of a hawk scanning the ground for a meal, the imposing wingspan of an eagle gliding effortlessly, or the silent swoop of an owl under the moonlight, these avian rulers are a testament to the wild spirit of the parks. Their sharp eyesight and 
-                        hunting prowess make them top-tier predators, maintaining the delicate balance of the ecosystem.
-                    </p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/amphs.jpg" alt="Amphibians">
-                    <p>Tucked away in the moist nooks and crannies of the parks are the unsung heroes of the wetlands - the amphibians. From the melodic croak of frogs by the water's edge to the silent, stealthy movements of salamanders in the undergrowth, these creatures are a vital link in the park's food chain. They're nature's barometers, their presence (or absence) often indicating the
-                         health of the environment. So, next time you're by a pond, take a moment. Who knows? You might just spot a frog prince waiting for a kiss!</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/marten.jpg" alt="Raccoon/Marten">
-                    <p>Night's curtain often unveils the forest's masked marauders - the Raccoons. With dexterous hands, they are the park's little mischief-makers, curiously exploring and often causing a bit of benign chaos. In the same nocturnal realm, the elusive Marten moves with grace, its sleek body navigating the branches high above. Whereas the raccoon plays the role of the forest 
-                        jester, the marten remains the shadowy acrobat.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/songbirds.jpg" alt="Songbirds">
-                    <p>Wake up in the parks, and you'll be serenaded by nature's very own choir. Songbirds, from the cheerful robin to the chirpy finch, fill the air with melodies that range from soft lullabies at dawn to vibrant anthems by midday. Each tweet, chirp, and song tells a tale – be it a call for a mate or a claim of territory. Their colorful plumes add splashes of joy to the 
-                        green canvas, making a walk in the woods feel like a journey through a living painting.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/bats.jpg" alt="Bats">
-                    <p>As twilight blankets the park, bats take to the skies in a dance of dusk. These nocturnal fliers are the unsung heroes of the night, keeping insect populations in check and pollinating flowers under the cover of darkness. Far from the spooky tales that surround them, bats are fascinating creatures with echolocation skills that would put the best sonar systems to 
-                        shame. So next time you spot them at twilight, remember: they're the park's silent guardians.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/reptiles.jpg" alt="Reptiles">
-                    <p>Sunbathing on a rock or slithering in the shadows, reptiles are the ancient denizens of these parks. Lizards, with their darting tongues and scaly armor, are like little dragons guarding their rocky realms. Snakes, meanwhile, weave their sinuous paths through the underbrush, embodying grace and potential danger in one sleek package. Respect their space, and they'll
-                         reward you with a glimpse into the primordial world.</p>
-                </div>
-    
-                <div class="wildlifeItem">
-                    <img src="images/trees.jpg" alt="Other">
-                    <p>Sequoia and Kings Canyon National Parks are home to a diverse array of creatures. Beyond the animals listed, there are many species that may be lesser-known but are just as integral to the ecosystem. From insects to unidentified sounds in the night, the parks are teeming with life. Always be observant and respectful, for every creature, big or small, plays a role in
-                         the delicate balance of nature.
+        </arcgis-map>
+    </div>
 
-                        .</p>
-                </div>
-    
-            </div>
-        </div>
+      <div id ="button-container">
+        <calcite-button id="example-button" icon-start="information-f" onclick="document.getElementById('example-modal').toggle();">
+            Explore wildlife
+        </calcite-button>
     </div>
-    
-    </div>
--->    
+   
     </calcite-shell>
+    
     <script src="calcite.js"></script>
 </body>
 </html>
