@@ -43,13 +43,29 @@ calcite-button {
 
 .center-text {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   padding: 10px;
 }
 
 .center-text img {
   max-width: 100%;
   height: auto;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-ul ul {
+  text-align: left;  /* or 'center' depending on your preference */
 }
 
 /* Header styles */
