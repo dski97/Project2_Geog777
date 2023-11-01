@@ -43,7 +43,13 @@ calcite-button {
 
 .center-text {
   text-align: center;
+  font-size: 1.2rem;
   padding: 10px;
+}
+
+.center-text img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Header styles */
@@ -84,4 +90,3 @@ calcite-button {
   line-height: 1.5;
   margin: 0;
 }
-
