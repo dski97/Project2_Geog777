@@ -105,31 +105,37 @@
 
         <calcite-modal aria-labelledby="modal-title" id="opener" kind="info" scale="m" width="1" open fullscreen>
             <div slot="header" id="modal-title">
-                Welcome to the Sequoia and Kings Canyon National Park Web App!
+                Sequoia and Kings Canyon National Park Web App!
             </div>
         
             <div slot="content">
                 <div class="center-text">
                     <img src="images\park.png" alt="Sequoia and Kings Canyon National Park Logo">
                     <p>
-                        Welcome to your comprehensive guide to Sequoia and Kings Canyon National Parks! This platform is designed to assist you in exploring the parks' rich biodiversity and infrastructure. Get started by diving into the following layers:
+                        Welcome to your comprehensive guide to Sequoia and Kings Canyon National Parks! This web application empowers you to explore the parks' rich biodiversity and infrastructure seamlessly. Navigate through detailed maps featuring overlooks, trails, natural features, and boundaries, tailored for various levels of exploration.
+                    </p>
+                    <p>
+                        The map provides interactive widgets located on the right-hand side to enhance your experience:
                     </p>
                     <div class="center-ul">
                         <ul>
-                            <li><strong>Infrastructure:</strong> Detailed maps featuring overlooks, bridges, and roads.</li>
-                            <li><strong>Trails:</strong> From beginner to advanced levels, explore trails like the Rae Lakes Loop and Pacific Crest Trail.</li>
-                            <li><strong>Natural Features:</strong> Discover named Sequoia trees, giant Sequoia groves, major rivers, and different ecological zones.</li>
-                            <li><strong>Boundaries:</strong> Understand wilderness travel zones and park boundaries for safe and responsible exploration.</li>
+                            <li><strong>Viewing Layers:</strong> Use the <strong>Layer List</strong> to toggle between different map layers.</li>
+                            <li><strong>Understanding Legends:</strong> The <strong>Legend</strong> tool deciphers symbols used on the map.</li>
+                            <li><strong>Measurements:</strong> Measure distances with the <strong>Distance Measurement</strong> tool.</li>
+                            <li><strong>Printing:</strong> Create a printable version of the map using the <strong>Print</strong> tool.</li>
+                            <li><strong>Sketching</strong> Mark up the map with any custom lines or icons using the <strong>Sketching</strong> tool.</li>
+                            <li><strong>Wildlife Spotting:</strong> Contribute by marking wildlife sightings using the <strong>Editor</strong> tool.</li>
                         </ul>
                     </div>
                     <p>
-                        With layers ranging from Class 1 (Minimally Developed) to Class 5 (Fully Developed), you have the flexibility to tailor your exploration according to your preferences and expertise.
+                        Explore at your pace, and immerse yourself in the natural wonders of Sequoia and Kings Canyon National Parks.
                     </p>
                 </div>
                 <div class="center-button">
                     <calcite-button slot="okay" alignment="center" appearance="solid" kind="brand" round scale="l">Take me to the App!</calcite-button>
                 </div>  
             </div>
+            
         </calcite-modal>
         
     </calcite-modal>    
@@ -143,17 +149,21 @@
 
         <arcgis-compass position="top-left" />
 
-        <arcgis-locate position="top-left" />
+        <arcgis-locate position="top-left" useHeadingEnabled />
 
         <arcgis-layer-list position="top-right" expandable />
+
+        <arcgis-home position="top-left" />
 
         <arcgis-legend position="top-right" expandable hide-layers-not-in-current-view />
 
         <arcgis-distance-measurement-2d position="top-right" expandable unit="miles"/>
 
-        <arcgis-elevation-profile position="top-right" expandable />
-
         <arcgis-print position="top-right" expandable />
+
+        <arcgis-sketch position="top-right" expandable />
+
+        <arcgis-editor position="top-right" expandable />
 
         <arcgis-basemap-gallery position="bottom-left" expandable />
         
@@ -167,7 +177,6 @@
             Explore wildlife
         </calcite-button>
     </div>
-   
     </calcite-shell>
     
     <script src="calcite.js"></script>

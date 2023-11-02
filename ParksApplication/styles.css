@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: var(--calcite-ui-foreground-2);
+  background-color: var(--calcite-ui-foreground-1);
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -25,8 +25,15 @@ arcgis-map {
   bottom: 70px;
   right: 10px;
   z-index: 1;
+  color: #434343;
 }
 
+
+.custom-example-theme {
+  --calcite-ui-brand: #061200;
+  --calcite-ui-brand-hover: #234a61;
+  --calcite-ui-foreground-3: #8f4d4d;
+}
 
 calcite-navigation {
     --calcite-navigation-width: 1;
@@ -36,9 +43,9 @@ calcite-navigation {
 }
 
 calcite-button {
-  --calcite-ui-brand: #060608;
-  --calcite-ui-brand-hover: #4d4d4d;
-  --calcite-ui-brand-press: #696969;
+  --calcite-ui-brand: #969494;
+  --calcite-ui-brand-hover: #9b9800;
+  --calcite-ui-brand-press: #d1d420;
 }
 
 .center-text {
@@ -70,10 +77,13 @@ calcite-button {
 
 /* Header styles */
 #modal-title {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
   color: #333;
   margin-bottom: 16px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* Content styles */
